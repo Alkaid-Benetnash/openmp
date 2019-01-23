@@ -41,8 +41,8 @@ using namespace std;
 
 
 OPAE_SVC_WRAPPER::OPAE_SVC_WRAPPER(const char *accel_uuid) :
-    accel_handle(NULL),
     mpf_handle(NULL),
+    accel_handle(NULL),
     is_ok(false),
     is_simulated(false)
 {
@@ -213,7 +213,7 @@ bool
 OPAE_SVC_WRAPPER::probeForASE()
 {
     fpga_result r = FPGA_OK;
-    uint32_t device_id = 0;
+    uint16_t device_id = 0;
 
     // Connect to the FPGA management engine
     fpga_properties filter = NULL;
