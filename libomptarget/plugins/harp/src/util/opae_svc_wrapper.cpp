@@ -41,8 +41,8 @@ using namespace std;
 
 
 OPAE_SVC_WRAPPER::OPAE_SVC_WRAPPER(const char *accel_uuid) :
-    accel_handle(NULL),
     mpf_handle(NULL),
+    accel_handle(NULL),
     is_ok(false),
     is_simulated(false)
 {
@@ -234,5 +234,5 @@ OPAE_SVC_WRAPPER::probeForASE()
     fpgaDestroyProperties(&filter);
 
     // ASE's device ID is 0xa5ea5e
-    return ((FPGA_OK == r) && (0xa5ea5e == device_id));
+    return ((FPGA_OK == r) && (((uint16_t)0xa5ea5e) == device_id));
 }

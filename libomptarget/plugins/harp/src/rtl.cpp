@@ -313,7 +313,7 @@ void *__tgt_rtl_data_alloc(int32_t device_id, int64_t size) {
   void *ptr = opae_generic_app.alloc_buffer(size);
   TIME_PRINT("alloc")
 
-  DP("[harp] size = %d\n", size);
+  DP("[harp] size = %ld\n", size);
 
   if (ptr == NULL)
     DP("[harp] ptr null\n");

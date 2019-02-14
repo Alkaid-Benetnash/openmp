@@ -24,7 +24,7 @@ int OPAEGenericApp::init() {
 
   // Device Status Memory (DSM)
   dsm.size = getpagesize();
-  dsm.virt = (volatile uint64_t*)fpga->allocBuffer(getpagesize(), &ioAddress);
+  dsm.virt = (uint64_t*)fpga->allocBuffer(getpagesize(), &ioAddress);
   dsm.phys = ioAddress;
 
   return 0;
@@ -35,7 +35,7 @@ void* OPAEGenericApp::alloc_buffer(uint64_t size) {
   uint64_t ioAddress;
 
   buffer.size = size;
-  buffer.virt = (volatile uint64_t*) fpga->allocBuffer(size, &ioAddress);
+  buffer.virt = (uint64_t*) fpga->allocBuffer(size, &ioAddress);
   buffer.phys = ioAddress;
 
   buffers.push_front(buffer);
@@ -95,7 +95,7 @@ int OPAEGenericApp::run() {
   // De-Assert AFU reset
   fpga->mmioWrite64(CSR_CTL, CTL_DEASSERT_RST);
 
-  for (int i = 0; i < buffers.size(); i++) {
+  for (size_t i = 0; i < buffers.size(); i++) {
     int pos = buffers.size() - i - 1;
 
     fpga->mmioWrite64(CSR_BASE_BUFFER + 0x10*i, intptr_t(buffers[pos].virt));
@@ -106,7 +106,7 @@ int OPAEGenericApp::run() {
   fpga->mmioWrite64(CSR_CTL, CTL_START);
 
   // Wait for test completion
-  while (0 == dsm.virt[0]) {
+  while (0 == ((volatile uint64_t*)dsm.virt)[0]) {
     usleep(100);
   };
 

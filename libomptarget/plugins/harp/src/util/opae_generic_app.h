@@ -36,7 +36,7 @@
 struct Buffer {
   uint64_t size;
   uint64_t phys;
-  volatile uint64_t* virt;
+  uint64_t* virt;
 };
 
 class OPAEGenericApp{
