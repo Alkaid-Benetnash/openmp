@@ -15,6 +15,7 @@ if (WIN32)
   set(ENABLE_LIBOMPTARGET OFF)
 endif()
 
+set(CMAKE_BUILD_TYPE Debug)
 option(OPENMP_ENABLE_LIBOMPTARGET "Enable building libomptarget for offloading."
        ${ENABLE_LIBOMPTARGET})
 if (OPENMP_ENABLE_LIBOMPTARGET)
