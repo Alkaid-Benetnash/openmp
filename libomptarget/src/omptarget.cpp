@@ -264,8 +264,8 @@ struct RTLInfoTy {
 #endif
         is_valid_binary(0), number_of_devices(0), init_device(0),
         load_binary(0), data_alloc(0), data_submit(0), data_retrieve(0),
-        data_delete(0), run_region(0), run_team_region(0), isUsed(false),
-        set_module(0), Mtx() {}
+        data_delete(0), run_region(0), run_team_region(0), set_module(0),
+	isUsed(false), Mtx() {}
 
   RTLInfoTy(const RTLInfoTy &r) : Mtx() {
     Idx = r.Idx;
@@ -392,9 +392,9 @@ void RTLsTy::LoadRTLs() {
               dynlib_handle, "__tgt_rtl_run_target_team_region")))
       continue;
 
-    if (R.staticDeviceId == SMARTNIC |
-        R.staticDeviceId == HARP2 |
-        R.staticDeviceId == HARP2SIM) {
+    if ((R.staticDeviceId == SMARTNIC) |
+        (R.staticDeviceId == HARP2) |
+        (R.staticDeviceId == HARP2SIM)) {
       if (!(*((void**) &R.set_module) = dlsym(
                 dynlib_handle, "__tgt_rtl_set_module")))
         continue;
@@ -420,7 +420,7 @@ void RTLsTy::LoadRTLs() {
 
 /// catch static device id.
 inline int translate_device_id(int device) {
-  for (int i = 0; (device > 9000) & (i < Devices.size()); i++) {
+  for (size_t i = 0; (device > 9000) & (i < Devices.size()); i++) {
     if (Devices[i].RTL->staticDeviceId == device) {
       return i;
     }
@@ -1623,7 +1623,7 @@ EXTERN void __tgt_target_data_begin(int64_t device_id, int32_t arg_num,
     void **args_base, void **args, int64_t *arg_sizes, int64_t *arg_types) {
   device_id = translate_device_id(device_id);
 
-  DP("Entering data begin region for device %d with %d mappings\n", device_id,
+  DP("Entering data begin region for device %ld with %d mappings\n", device_id,
      arg_num);
 
   // No devices available?
