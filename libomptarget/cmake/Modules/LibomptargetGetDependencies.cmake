@@ -292,7 +292,7 @@ find_path (
 find_library (
   LIBOMPTARGET_DEP_OPAE_ASE_C_LIBRARY
   NAMES
-    opae-c-ase
+    opae-c-vai-ase
   PATHS
     /usr/lib
     /usr/local/lib
@@ -322,7 +322,7 @@ mark_as_advanced(
 find_path (
     LIBOMPTARGET_DEP_BBB_CCI_MPF_INCLUDE_DIRS
   NAMES
-    opae/mpf/mpf.h
+    vai/mpf/mpf.h
   PATHS
     /usr/include
     /usr/local/include
@@ -334,7 +334,7 @@ find_path (
 find_library (
   LIBOMPTARGET_DEP_BBB_CCI_MPF_MPF_LIBRARY
   NAMES
-    MPF
+    MPF_VAI
   PATHS
     /usr/lib
     /usr/local/lib
