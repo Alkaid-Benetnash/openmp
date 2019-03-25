@@ -20,6 +20,8 @@ OPAEGenericApp::~OPAEGenericApp() {}
 int OPAEGenericApp::init() {
   uint64_t ioAddress;
 
+  printf("using vai\n");
+
   fpga = new OPAE_SVC_WRAPPER(AFU_UUID);
 
   // Device Status Memory (DSM)
