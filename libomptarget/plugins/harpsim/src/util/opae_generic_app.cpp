@@ -12,6 +12,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "opae_generic_app.h"
+#include <stdio.h>
 
 OPAEGenericApp::OPAEGenericApp() {}
 
