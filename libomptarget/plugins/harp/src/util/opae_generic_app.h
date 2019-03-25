@@ -12,8 +12,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <uuid/uuid.h>
-#include <opae/fpga.h>
-#include <string>
+#include <vai/fpga.h>
 #include <cstring>
 #include <deque>
 #include <unistd.h>

@@ -67,13 +67,6 @@ int OPAEGenericApp::finish() {
 }
 
 int OPAEGenericApp::program(const char *module) {
-  std::string cmd;
-
-  cmd  = "$OPAE_SDK_BIN_PATH/fpgaconf ";
-  cmd += module;
-  cmd += ".gbs";
-
-  system(cmd.c_str());
 
   init();
 

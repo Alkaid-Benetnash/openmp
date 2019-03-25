@@ -238,7 +238,7 @@ set(LIBOMPTARGET_DEP_AALSDK_LIBRARIES
 find_path (
     LIBOMPTARGET_DEP_OPAE_INCLUDE_DIRS
   NAMES
-    opae/fpga.h
+    vai/fpga.h
   PATHS
     /usr/include
     /usr/local/include
@@ -250,7 +250,7 @@ find_path (
 find_library (
   LIBOMPTARGET_DEP_OPAE_OPAE_C_LIBRARY
   NAMES
-    opae-c
+    vai-c
   PATHS
     /usr/lib
     /usr/local/lib
@@ -280,7 +280,7 @@ mark_as_advanced(
 find_path (
     LIBOMPTARGET_DEP_OPAE_ASE_INCLUDE_DIRS
   NAMES
-    opae/fpga.h
+    vai/fpga.h
   PATHS
     /usr/include
     /usr/local/include
@@ -292,7 +292,7 @@ find_path (
 find_library (
   LIBOMPTARGET_DEP_OPAE_ASE_C_LIBRARY
   NAMES
-    opae-c-vai-ase
+    vai-c-ase
   PATHS
     /usr/lib
     /usr/local/lib

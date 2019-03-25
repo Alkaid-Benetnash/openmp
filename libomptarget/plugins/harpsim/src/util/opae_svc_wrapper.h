@@ -33,7 +33,7 @@
 
 #include <stdint.h>
 
-#include <vai/vai.h>
+#include <vai/fpga.h>
 #include <vai/mpf/mpf.h>
 
 typedef class OPAE_SVC_WRAPPER SVC_WRAPPER;

@@ -33,8 +33,8 @@
 
 #include <stdint.h>
 
-#include <opae/fpga.h>
-#include <opae/mpf/mpf.h>
+#include <vai/fpga.h>
+#include <vai/mpf/mpf.h>
 
 typedef class OPAE_SVC_WRAPPER SVC_WRAPPER;
 
@@ -56,7 +56,7 @@ class OPAE_SVC_WRAPPER
     //
     fpga_result mmioWrite64(uint32_t idx, uint64_t v)
     {
-        return fpgaWriteMMIO64(accel_handle, 0, idx, v);
+        return vai_afu_mmio_write(vai_conn, idx, v);
     }
 
     uint64_t mmioRead64(uint32_t idx)
@@ -64,7 +64,7 @@ class OPAE_SVC_WRAPPER
         fpga_result r;
         uint64_t v;
 
-        r = fpgaReadMMIO64(accel_handle, 0, idx, &v);
+        r = vai_afu_mmio_read(vai_conn, idx, &v);
         if (r != FPGA_OK) return -1;
 
         return v;
@@ -79,11 +79,14 @@ class OPAE_SVC_WRAPPER
     //
     void* allocBuffer(size_t nBytes, uint64_t* ioAddress = NULL);
     void freeBuffer(void* va);
-
+	fpga_result reset()
+	{
+		return vai_afu_reset(vai_conn);
+	}
     mpf_handle_t mpf_handle;
 
   protected:
-    fpga_handle accel_handle;
+    struct vai_afu_conn *vai_conn;
 
     bool is_ok;
     bool is_simulated;
